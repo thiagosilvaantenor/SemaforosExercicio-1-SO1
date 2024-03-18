@@ -1,7 +1,7 @@
 package view;
 
 import java.util.concurrent.Semaphore;
-import controller.ThreadSemaforosController;
+import controller.ThreadSemaforoController;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 		
 		
 		for(int i = 0; i < 21; i++) {
-			ThreadSemaforosController th = new ThreadSemaforosController(mutex);
+			ThreadSemaforoController th = new ThreadSemaforoController(mutex);
 			th.start();
 			
 		}

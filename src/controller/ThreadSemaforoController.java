@@ -2,11 +2,11 @@ package controller;
 
 import java.util.concurrent.Semaphore;
 
-public class ThreadSemaforosController extends Thread {
+public class ThreadSemaforoController extends Thread {
 	private static int id;
 	private Semaphore semaforo;
 
-	public ThreadSemaforosController(Semaphore semaforo) {
+	public ThreadSemaforoController(Semaphore semaforo) {
 		this.semaforo = semaforo;
 		id++;
 	}
