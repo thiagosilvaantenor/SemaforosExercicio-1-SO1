@@ -34,11 +34,13 @@ números iniciando em 1 e incrementando de um em um. As threads tem comportament
 como segue:
 
 - a) Threads com ID dividido por 3 resultando em resto igual a um fazem as transações:
+
   - Cálculos de 0,2 a 1,0 segundos
   - Transação de BD por 1 segundo
   - Cálculos de 0,2 a 1,0 segundos
   - Transação de BD por 1 segundo
 - b) Threads com ID dividido por 3 resultando em resto igual a dois fazem as transações:
+
   - Cálculos de 0,5 a 1,5 segundos
   - Transação de BD por 1,5 segundo
   - Cálculos de 0,5 a 1,5 segundos
@@ -46,6 +48,7 @@ como segue:
   - Cálculos de 0,5 a 1,5 segundos
   - Transação de BD por 1,5 segundo
 - c) Threads com ID dividido por 3 resultando em resto igual a zero fazem as transações:
+  
   - Cálculos de 1 a 2 segundos
   - Transação de BD por 1,5 segundo
   - Cálculos de 1 a 2 segundos
@@ -58,19 +61,23 @@ exibição em console de cada passo que a Thread está realizando.
 
 
 ## Status do projeto
-  🚧 Em construção 🚧
-    
-* Na classe `ThreadSemaforoController`:
-  
-  * é criado o atributo static `id` que será incrementado toda vez que a classe é instânciada 
-  * O metodo `calculando` simula a realização de calculos por threads imprimindo no console `Thread #{id} está calculando`
-  * O metodo `transacaoBD` simula a transação de banco de dados por threads, com um semaforo para garantir que seja feita uma por vez, imprimindo no console `Thread #{id} está realizando uma transação no banco de dados`
-    
-* Na classe `Main`:
-  
-  * É criado um semaforo, com o número de permissões 1
-  * Dentro de uma iteração `for` de 0 até 20 é criado uma instância da classe `ThreadSemaforoController` e é iniciada pelo metodo `start()`
+  ✅Finalizado✅ 
 
+* Projeto utiliza o padrão **MVC** *(Model View Controller)*, todos os arquivos estão dentro do diretório **src**
+  * Dentro do pacote **view** está a camada de interacao direta com o usuario:
+    * Na classe `Main`:
+      * É criado um `Semaphore`, com o número de permissões 1
+      * Dentro de uma iteração `for` de 1 até 21 é criado uma instância da classe `ThreadSemaforoController`, passando o `Semaphore` e o `int i` do `for` como `int id` como parâmetros e é iniciada pelo método `start()`
+    
+  * Dentro do pacote **controller** está a classe com métodos, que será instanciada na camada **view**:  
+    * Na classe `ThreadSemaforoServidorController`:
+    
+      * Recebe um `int id` começando por 1, além de um `Semaphore` que contera a quantidade de permissões, neste caso 1;
+      * O método run chamara o método `comportamento`, este que verifica o resto da divisão do id da thread com 3 (se for 1, 2 , 0), gerando o tempo adequado para cada transacao que sera passado para o método `transacoes;
+      * O método `transacoes`, passa o tempos dos métodos `calculando` e `transacaoBD` que serao chamados, nesta mesma ordem;
+      * O método `calculando` simula a realização de calculos por threads imprimindo no console `Thread #{id} está calculando`
+      * O método `transacaoBD` simula a transação de banco de dados por threads, com um semaforo para garantir que seja feita uma por vez, imprimindo no console `Thread #{id} está realizando uma transação no banco de dados`.
+    
 
 
 ## Tecnologias
