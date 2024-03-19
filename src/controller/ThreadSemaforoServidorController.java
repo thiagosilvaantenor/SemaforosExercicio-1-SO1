@@ -40,7 +40,7 @@ public class ThreadSemaforoServidorController extends Thread {
 			transacoes(tempoBD, maxC, minC);
 			transacoes(tempoBD, maxC, minC);
 			break;
-		case 3:
+		case 0:
 			//1,5seg => 1500mlSeg
 			tempoBD = 1500;
 			//2seg => 2000mlSeg
